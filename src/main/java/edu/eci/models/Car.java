@@ -4,8 +4,14 @@ import java.io.Serializable;
 
 public class Car implements Serializable{
 
-    private String licensePlate;
-    private String brand;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private String licensePlate;
+
+	private String brand;
     
     public Car() {
 	}
@@ -15,4 +21,19 @@ public class Car implements Serializable{
     	this.brand = brand;
 	}
     
+    public String getLicensePlate() {
+		return licensePlate;
+	}
+
+	public void setLicensePlate(String licensePlate) {
+		this.licensePlate = licensePlate;
+	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
 }

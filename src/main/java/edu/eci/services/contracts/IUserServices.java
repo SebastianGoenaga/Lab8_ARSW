@@ -12,4 +12,7 @@ public interface IUserServices {
     User create(User user);
     User get(UUID id);
     User get(String name);
+    void deleteUser(User user);
+    void removeUser(String id);
+	void updateUser(User user);
 }

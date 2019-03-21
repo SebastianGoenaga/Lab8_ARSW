@@ -7,9 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
@@ -31,7 +28,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> createUser(@RequestBody User user){
-        try{
+    	try{
             return new ResponseEntity<>(userServices.create(user), HttpStatus.CREATED);
         }catch(Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
@@ -41,12 +38,33 @@ public class UserController {
     @ResponseBody
     @RequestMapping(method = RequestMethod.PUT, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> updateUser(@RequestBody User user){
-        throw new NotImplementedException();
+    	try{
+    		userServices.updateUser(user);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        }
     }
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> deleteUser(@RequestBody UUID id){
-        throw new NotImplementedException();
+    public ResponseEntity<?> deleteUser(@RequestBody User user){
+    	try{
+    		userServices.deleteUser(user);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        }
     }
+    
+//    @ResponseBody
+//    @RequestMapping(method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
+//    public ResponseEntity<?> deleteUserWithID(@RequestBody String id){
+//    	try{
+//    		userServices.removeUser(id);
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        }catch(Exception e){
+//            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+//        }
+//    }
 }
