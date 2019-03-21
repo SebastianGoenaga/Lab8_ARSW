@@ -1,8 +1,18 @@
 package edu.eci.models;
 
-public class Car {
+import java.io.Serializable;
 
-    private String licencePlate;
+public class Car implements Serializable{
+
+    private String licensePlate;
     private String brand;
-
+    
+    public Car() {
+	}
+    
+    public Car(String licensePlate, String brand) {
+    	this.licensePlate = licensePlate;
+    	this.brand = brand;
+	}
+    
 }
