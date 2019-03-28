@@ -16,7 +16,7 @@ public class UserController {
     private IUserServices userServices;
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<?> getUser(){
         try{
             return new ResponseEntity<>(userServices.list(), HttpStatus.OK);
@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> createUser(@RequestBody User user){
     	try{
             return new ResponseEntity<>(userServices.create(user), HttpStatus.CREATED);
@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.PUT, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/", method = RequestMethod.PUT, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> updateUser(@RequestBody User user){
     	try{
     		userServices.updateUser(user);
@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/", method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> deleteUser(@RequestBody User user){
     	try{
     		userServices.deleteUser(user);
@@ -57,14 +57,14 @@ public class UserController {
         }
     }
     
-//    @ResponseBody
-//    @RequestMapping(method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
-//    public ResponseEntity<?> deleteUserWithID(@RequestBody String id){
-//    	try{
-//    		userServices.removeUser(id);
-//            return new ResponseEntity<>(HttpStatus.OK);
-//        }catch(Exception e){
-//            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
-//        }
-//    }
+    @ResponseBody
+    @RequestMapping(value = "/userid", method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> deleteUserWithID(@RequestBody String id){
+    	try{
+    		userServices.removeUser(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        }
+    }
 }

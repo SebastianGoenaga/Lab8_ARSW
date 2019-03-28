@@ -23,7 +23,7 @@ import java.util.UUID;
 @Qualifier("UserPostgresRepository")
 public class UserPostgresRepository implements IUserRepository {
 
-	private String dbUrl = null;
+	private String dbUrl = System.getenv().get("JDBC_DATABASE_URL");
 
 	@Autowired
 	private DataSource dataSource;

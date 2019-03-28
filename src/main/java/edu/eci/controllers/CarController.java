@@ -8,9 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/cars")
@@ -20,7 +17,7 @@ public class CarController {
 	private ICarServices carServices;
 	
     @ResponseBody
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     
     public ResponseEntity<?> getCar(){
     	try {
@@ -31,7 +28,7 @@ public class CarController {
     }
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> createCar(@RequestBody Car car){
     	try {
     		return new ResponseEntity<>(carServices.create(car),HttpStatus.OK);
@@ -41,7 +38,7 @@ public class CarController {
     }
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.PUT, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/", method = RequestMethod.PUT, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> updateCar(@RequestBody Car car){
     	try{
     		carServices.update(car);
@@ -52,7 +49,7 @@ public class CarController {
     }
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/", method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> deleteCar(@RequestBody Car car){
     	try{
     		carServices.delete(car);

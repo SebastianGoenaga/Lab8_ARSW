@@ -26,7 +26,7 @@ import edu.eci.persistences.repositories.IUCarRepository;
 @Qualifier("CarPostgresRepository")
 public class CarPostgresRepository implements IUCarRepository {
 
-	private String dbUrl = null;
+	private String dbUrl = System.getenv().get("JDBC_DATABASE_URL");
 
 	@Autowired
 	private DataSource dataSource2;
