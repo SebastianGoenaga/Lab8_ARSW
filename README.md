@@ -38,3 +38,34 @@ Use the following postman collection to test the REST API.
 For more information about using Java on Heroku, see these Dev Center articles:
 
 - [Java on Heroku](https://devcenter.heroku.com/categories/java)
+
+
+# Lab 8
+## Executing the app
+
+- ![foto](img/running.png)
+- ![foto](img/runningconsole.png)
+### Questions
+- The application run a Heroku website.
+- The application uses GET, POST, PUT and DELETE http methods to interact with the API's user. The services offered allow us to interact with users and cars in housed in the database.
+- The procfile if the file that heroku deploy uses to run the application that is in .jar file.
+## Deploy the app
+After create the app with the command `heroku create` and save changes in the heroku remote with `git push heroku master`:
+
+-  `heroku ps:scale web=1`
+![foto](img/ps-scale.png)
+- `heroku open`
+![foto](img/herokuOpen.png)
+
+## View logs
+
+![foto](img/logs.png)
+
+## Use a database
+
+- `heroku addons`  
+![foto](img/addons.png)
+- `heroku confing`
+![foto](img/config.png)
+- `heroku pg`
+![foto](img/pg.png)

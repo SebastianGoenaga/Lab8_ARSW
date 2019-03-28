@@ -2,6 +2,9 @@ package edu.eci.controllers;
 
 import edu.eci.models.User;
 import edu.eci.services.contracts.IUserServices;
+
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,8 +19,17 @@ public class UserController {
     private IUserServices userServices;
 
     @ResponseBody
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getUser(){
+//        try{
+            return new ResponseEntity<>(userServices.list(), HttpStatus.OK);
+//        }catch(Exception e){
+//            return new ResponseEntity<>(e.getStackTrace(), HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+    }
+    @ResponseBody
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUser(@PathVariable UUID id){
         try{
             return new ResponseEntity<>(userServices.list(), HttpStatus.OK);
         }catch(Exception e){
